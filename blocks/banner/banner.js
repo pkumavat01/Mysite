@@ -1,36 +1,34 @@
 export default function decorate(block) {
   const children = [...block.children];
   
-  let bgImageUrl = '';
+  // Assuming the last child contains background image URL with prefix "Background Image:"
   const lastChild = children[children.length - 1];
+  let bgImageUrl = '';
+
   if (lastChild && lastChild.textContent.startsWith('Background Image:')) {
     bgImageUrl = lastChild.textContent.replace('Background Image:', '').trim();
+    // Remove the last child since it's used for background image only
     block.removeChild(lastChild);
   }
 
-  const titleText = children[0]?.textContent || '';
-  const descText = children[1]?.textContent || '';
-  const ctaText = children[2]?.textContent || '';
-
+  // Now build the content elements from remaining children
   const title = document.createElement('h1');
   const desc = document.createElement('p');
   const cta = document.createElement('a');
 
-  title.textContent = titleText;
-  desc.textContent = descText;
+  title.textContent = children[0]?.textContent || '';
+  desc.textContent = children[1]?.textContent || '';
 
-  const parts = ctaText.split('|');
-  const ctaLabel = parts[0]?.trim() || 'Click here';
-  const ctaLink = parts[1]?.trim() || '#';
+  if(children[2]) {
+    const parts = children[2].textContent.split('|');
+    cta.textContent = parts[0].trim();
+    cta.href = parts[1]?.trim() || '#';
+  }
 
-  cta.textContent = ctaLabel;
-  cta.href = ctaLink;
-  cta.target = '_blank';
-  cta.rel = 'noopener noreferrer';
-
-  block.innerHTML = '';
+  block.innerHTML = ''; // clear content
   block.append(title, desc, cta);
 
+  // Set background image dynamically
   if (bgImageUrl) {
     block.style.backgroundImage = `url('${bgImageUrl}')`;
     block.style.backgroundSize = 'cover';
@@ -38,5 +36,6 @@ export default function decorate(block) {
     block.style.backgroundRepeat = 'no-repeat';
   }
 
+  // Add styling classes if needed
   block.classList.add('banner');
 }
