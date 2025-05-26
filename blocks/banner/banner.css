@@ -1,16 +1,27 @@
 .banner {
-  background-image: url("https://blog.adobe.com/en/publish/2022/03/09/media_1f3c95f5647e554119ca486e7a3a77a7e0093b8a3.png?width=750&format=png&optimize=medium");
-  background-color: #cccccc;
-  height: 500px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   position: relative;
   color: white;
   padding: 40px 20px;
   text-align: center;
   border-radius: 8px;
+  height: 500px;
+  /* background-image is NOT hardcoded here, it's set dynamically */
 }
+
+/* Optional overlay for better contrast */
+.banner::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 139, 0.5); /* blue transparent */
+  z-index: 0;
+}
+
+.banner > * {
+  position: relative;
+  z-index: 1;
+}
+
 
 .banner img {
   max-width: 100%;
