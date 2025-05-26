@@ -1,6 +1,11 @@
 .banner {
-  background: #2A7B9B;
-background: linear-gradient(90deg,rgba(42, 123, 155, 0) 0%, rgba(199, 87, 91, 1) 50%, rgba(237, 83, 83, 1) 100%);
+  background-image: url("https://blog.adobe.com/en/publish/2022/03/09/media_1f3c95f5647e554119ca486e7a3a77a7e0093b8a3.png?width=750&format=png&optimize=medium");
+  background-color: #cccccc;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
   color: white;
   padding: 40px 20px;
   text-align: center;
