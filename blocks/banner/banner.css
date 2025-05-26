@@ -5,20 +5,33 @@
   text-align: center;
   border-radius: 8px;
   height: 500px;
+  /* background-image is NOT hardcoded here, it's set dynamically */
 }
 
+/* Optional overlay for better contrast */
 .banner::before {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-color: rgba(0, 0, 139, 0.5);
+  background-color: rgba(0, 0, 139, 0.5); /* blue transparent */
   z-index: 0;
-  border-radius: 8px;
 }
 
 .banner > * {
   position: relative;
   z-index: 1;
+}
+
+
+.banner img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.banner h1,
+.banner p,
+.banner a {
   margin: 10px 0;
 }
 
